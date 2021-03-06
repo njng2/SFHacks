@@ -5,3 +5,4 @@ bot/venv
 bot/__pycache__
 bot/tutorial-env/
 bot/.env
+calendar/venv

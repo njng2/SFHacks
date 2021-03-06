@@ -1,43 +1,58 @@
-# Leonardo Matone
-# Discord Bot interface
+# Authors: Leonardo Matone, Nancy Ng
+# Date: 3.5.21
+# Title: Discord Bot interface
 
 import discord
 import os
-from dotenv import load_dotenv
-from stay_awake import stay_awake
 import requests
 import json
+import sys
+sys.path.insert('calendar/calendar.py')
+import quickstart
+from dotenv import load_dotenv
+from discord.ext import commands
+from SFHacks.calendar.quickstart import addEvent, removeEvent, viewCalendar
 
 load_dotenv()
 token = os.getenv('TOKEN')
 
-# client
+# setup the client
 client = discord.Client()
 
-# gimmick
+@client.event # When bot establishes connection to Discord:
+async def on_ready():
+  print("We have logged on as {0.user}".format(client))
+
+# inspiration gimmick
+inspirational = ["inspiration", "inspirational", "inspire", "inspired"]
 def get_quote():
   response = requests.get("https://zenquotes.io/api/random")
   jsonData = json.loads(response.text)
   quote = '"' + jsonData[0]['q'] + '" -' + jsonData[0]['a']
   return quote
 
-@client.event # When bot establishes connection to Discord:
-async def on_ready():
-  print("We have logged on as {0.user}".format(client))
-
 @client.event # When a new message is detected:
 async def on_message(message):
-  print("Received message")
-  # if the message autor is the user, return.
+  print(message.author)
+  # if the message author is the user, return.
   if message.author == client.user:
     return
 
+  # actions:
+  if message.content.startswith("#"):
+    if "add" in message.content:
+      newAssignment = message.content[4:]
+      await message.channel.send("New assignment added to calendar: " + newAssignment)
 
 
   # gimmicks:
-  if "inspiration" in message.content:
-    quote = get_quote()
-    await message.channel.send(quote)
+  for word in inspirational:
+    if word in message.content:
+      quote = get_quote()
+      await message.channel.send(quote)
+      break
+  if message.content == '$remindme':
+    await message.channel.send('Hello {}'.format(message.author.mention))
   if message.content.startswith("hi"):
     await message.channel.send("hi")
   if message.content.startswith("ping"):
@@ -49,5 +64,5 @@ async def on_message(message):
   if "NICE" in message.content:
     await message.channel.send("I know, right?")
 
-stay_awake()
+# client = MyClient()
 client.run(token)

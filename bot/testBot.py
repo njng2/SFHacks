@@ -44,3 +44,24 @@ async def on_ready():
     print(f'{client.user} has connected to Discord.')
     
 client.run(token)
+
+#-----------------------------------------------------------------#
+# RIP stay_awake.py:
+
+from flask import Flask
+from threading import Thread
+
+app = Flask("")
+
+@app.route('/')
+def home():
+  return "Hey, I'm awake!"
+
+def run():
+  app.run(host='0.0.0.0', port=8000)
+
+def stay_awake():
+  t = Thread(target=run)
+  t.start()
+
+#-----------------------------------------------------------------#
