@@ -25,7 +25,5 @@ async def on_message(message):
   if message.content.startswith("bipitty"):
     await message.channel.send("bopitty")
 
-  
-
 stay_awake()
 bot.run(os.getenv('TOKEN'))
