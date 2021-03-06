@@ -1,18 +1,20 @@
 # Leonardo Matone
-# Discord Bot testing
-
+# Discord Bot interface
 
 import discord
 import os
 from stay_awake import stay_awake
 
+token = os.getenv('TOKEN')
+
+# client
 bot = discord.Client()
 
-@bot.event
+@bot.event # When bot establishes connection to Discord:
 async def on_ready():
   print("We have logged on as {0.user}".format(bot))
 
-@bot.event
+@bot.event # When a new message is detected:
 async def on_message(message):
   print("Received message")
   if message.author == bot.user:
@@ -26,4 +28,4 @@ async def on_message(message):
     await message.channel.send("bopitty")
 
 stay_awake()
-bot.run(os.getenv('TOKEN'))
+bot.run(token)
