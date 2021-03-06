@@ -1,3 +1,9 @@
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+     console.log("HEWRM")
+   }
+);
+
 document.getElementById("changeColor").onclick = (event) => {
     console.log("death")
 }
