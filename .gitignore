@@ -3,3 +3,6 @@ bot/.env
 bot/venv
 .spyproject
 bot/__pycache__
+bot/testBot.py
+bot/tutorial-env/
+bot/.env
