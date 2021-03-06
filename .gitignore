@@ -1,3 +1,12 @@
+bots
+bot/node_modules
+bot/.env
+bot/venv
+.spyproject
+bot/__pycache__
+bot/tutorial-env/
+bot/.env
+calendar/venv
 bot/node_modules
 bot/.env
 bot/venv
