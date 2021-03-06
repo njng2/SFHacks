@@ -3,8 +3,9 @@ import pymongo
 app = Flask(__name__)
 import json
 import bson.json_util
+import mongo
 
-client = pymongo.MongoClient("mongodb+srv://moody:moody921@hello.m2mfj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+client = pymongo.MongoClient("")
 db = client.data
 
 
