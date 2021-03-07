@@ -12,6 +12,8 @@ bot/.env
 bot/venv
 .spyproject
 bot/__pycache__# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+calendar/__pycache__
+calendar/token.pickle
 
 # dependencies
 frontend/node_modules
