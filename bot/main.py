@@ -6,8 +6,6 @@ import discord
 import os
 import requests
 import json
-import sys
-sys.path.insert('calendar/calendar.py')
 import quickstart
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -44,7 +42,6 @@ async def on_message(message):
       newAssignment = message.content[4:]
       await message.channel.send("New assignment added to calendar: " + newAssignment)
 
-
   # gimmicks:
   for word in inspirational:
     if word in message.content:
@@ -53,6 +50,7 @@ async def on_message(message):
       break
   if message.content == '$remindme':
     await message.channel.send('Hello {}'.format(message.author.mention))
+
   if message.content.startswith("hi"):
     await message.channel.send("hi")
   if message.content.startswith("ping"):
@@ -63,6 +61,9 @@ async def on_message(message):
     await message.channel.send("No foul language please.")
   if "NICE" in message.content:
     await message.channel.send("I know, right?")
+
+@client.event
+async def remind
 
 # client = MyClient()
 client.run(token)
